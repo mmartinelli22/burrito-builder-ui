@@ -3,6 +3,7 @@ import './App.css';
 import { getOrders } from '../../apiCalls';
 import Orders from '../../components/Orders/Orders';
 import OrderForm from '../../components/OrderForm/OrderForm';
+import { postNewOrder } from '../../apiCalls';
 
 class App extends Component {
   constructor(props) {
@@ -17,13 +18,19 @@ class App extends Component {
   }
 
   componentDidMount() {
-    getOrders().then((data) => {
-      this.setState({ orders: [...data[0].orders] })
-    }, [])
+    return getOrders()
+      .then(data => {
+        this.setState({ orders: data.orders })
+      })
       .catch(err => console.error('Error fetching:', err));
   }
-  addOrder = (order) => {
-    this.setState({ orders: [...this.state.orders, order] });
+  addOrder = (newOrder) => {
+    return postNewOrder(newOrder)
+      .then(data => {
+        this.setState({ orders: [...this.state.orders, data] })
+        console.log(this.state.orders)
+      })
+      .catch(err => console.error(err))
   }
   render() {
     console.log('state', this.state.orders)
