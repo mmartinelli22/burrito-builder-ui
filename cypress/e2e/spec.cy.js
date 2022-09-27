@@ -32,17 +32,17 @@ describe('dashboard', () => {
   })
 
   it('each order should render a name and ingredients', () => {
-    cy.get('h3')
+    cy.get(':nth-child(1) > h3')
       .contains('Pat')
-    cy.get('.ingredient-list')
+    cy.get(':nth-child(1) > .ingredient-list')
       .contains('beans')
-    cy.get('.ingredient-list')
+    cy.get(':nth-child(1) > .ingredient-list')
       .contains('lettuce')
-    cy.get('.ingredient-list')
+    cy.get(':nth-child(1) > .ingredient-list')
       .contains('carnitas')
-    cy.get('.ingredient-list')
+    cy.get(':nth-child(1) > .ingredient-list')
       .contains('queso fresco')
-    cy.get('.ingredient-list')
+    cy.get(':nth-child(1) > .ingredient-list')
       .contains('jalapeno')
 
   })
